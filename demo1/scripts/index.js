@@ -1,2 +1,5 @@
-// Check matan
-// check hoshen
+$(document).ready( () => {
+
+    
+
+});
