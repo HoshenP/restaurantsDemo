@@ -1,10 +1,13 @@
-// export class Restaurant {
+export class Restaurant {
+    constructor(uid, username, password, name, location, phoneNumber, images) {
+        this.uid = uid;
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.location = location;
+        this.phoneNumber = phoneNumber;
+        this.images = images;
+    }
+}
 
-//     constructor(username, password, name, location, phoneNumber, images[]) {
-//         this.username = username;
-//         this.password = password;
-//         this.email = email;
-//         this.profilePicture = profilePicture;
-//     }
 
-// }
