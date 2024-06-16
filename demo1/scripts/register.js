@@ -6,14 +6,35 @@ function uid_generator() {
 
 $(document).ready(function(){
     $("#registerBtn").click(()=>{
-        if($("#username").val() === "" ||
+
+
+        var images = $("#resturauntImages").prop('files');
+        var base64Images = [];
+
+        for (var i = 0; i < images.length; i++) {
+          (function(file) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+              base64Images.push(e.target.result);
+              if(base64Images.length === images.length) {
+                // All images are loaded and their base64 strings are in base64Images array
+                console.log(base64Images);
+              }
+            };
+            reader.readAsDataURL(file);
+          })(images[i]);
+        }
+
+
+
+
+    if ($("#username").val() === "" ||
     $("#password").val() === "" ||
     $("#restaurantName").val() === "" ||
     $("#restaurantLocation").val() === "" ||
-    $("#restaurantPhone").val() === "" 
-    ){
+    $("#restaurantPhone").val() === "" ) {
         alert("fill in all the fields  ")
-    }else{
+    } else {
        
         if(localStorage.getItem("res_users")){
             let tempArr = JSON.parse(localStorage.getItem("res_users"));
@@ -23,7 +44,7 @@ $(document).ready(function(){
                 $("#restaurantName").val(),
                 $("#restaurantLocation").val(),
                 $("#restaurantPhone").val(),
-                [1,2,3,4,5]
+                base64Images
             )
              
             tempArr.push(newRestaurnt)
@@ -37,7 +58,7 @@ $(document).ready(function(){
                 $("#restaurantName").val(),
                 $("#restaurantLocation").val(),
                 $("#restaurantPhone").val(),
-                [1,2,3,4,5]
+                base64Images
             )
              
             tempArr.push(newRestaurnt)
