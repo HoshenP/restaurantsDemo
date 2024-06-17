@@ -58,10 +58,6 @@ $(document).ready(function(){
                     tempArr.push(newRestaurnt)
                     localStorage.setItem("res_users", JSON.stringify(tempArr));
                 }
-
-
-
-                
                 }
             };
             reader.readAsDataURL(file);
@@ -73,6 +69,6 @@ $(document).ready(function(){
         }
         })
 
-    
-})
+ 
+});
 
