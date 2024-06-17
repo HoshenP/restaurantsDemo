@@ -7,11 +7,15 @@ function uid_generator() {
 $(document).ready(function(){
     $("#registerBtn").click(()=>{
         
+        console.log($("#resturauntImages").prop('files'));
         if ($("#username").val() === "" ||
         $("#password").val() === "" ||
         $("#restaurantName").val() === "" ||
         $("#restaurantLocation").val() === "" ||
-        $("#restaurantPhone").val() === "" || !$("#restaurantPhone").prop('files')) {
+        $("#restaurantPhone").val() === "" || 
+        !$("#resturauntImages").prop('files')[0] ||
+        $("#resturauntImages").prop('files').length > 5
+    ) {
             alert("Make sure you fill all the fields!")
         } else {
 
@@ -58,6 +62,10 @@ $(document).ready(function(){
                     tempArr.push(newRestaurnt)
                     localStorage.setItem("res_users", JSON.stringify(tempArr));
                 }
+
+
+
+                
                 }
             };
             reader.readAsDataURL(file);
@@ -69,6 +77,6 @@ $(document).ready(function(){
         }
         })
 
- 
-});
+    
+})
 
