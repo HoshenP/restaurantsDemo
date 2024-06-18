@@ -13,9 +13,12 @@ export class Restaurant {
 export function loadRestaurants(){
     console.log("works");
     $("#restaurantsContainer").html("");
-    // const loggedRestaurant = JSON.parse(localStorage.getItem("res_current"));
+
+    const loggedRestaurant = JSON.parse(localStorage.getItem("res_current"));
+
     let tempRestaurants = JSON.parse(localStorage.getItem("res_users"));
     if (tempRestaurants){
+
         for (let x in tempRestaurants){
             let currentRestaurant = tempRestaurants[x];
 
@@ -34,9 +37,6 @@ export function loadRestaurants(){
             let phoneDiv = document.createElement("div");
             phoneDiv.innerHTML = `Phone number: ${currentRestaurant.phoneNumber}`; 
 
-            console.log(x);
-
-
             let imagesDiv = document.createElement("div");
             for (let x in currentRestaurant.images){
 
@@ -48,42 +48,52 @@ export function loadRestaurants(){
 
             }
 
+
+            let btnsDiv = document.createElement("div");
+            btnsDiv.setAttribute("class", "btnsDiv");
+
+
+            // When login page is finished and there is logged user in localStorage
+            console.log(loggedRestaurant, currentRestaurant);
+            if (loggedRestaurant.uid == currentRestaurant.uid){
+                console.log("ting");
+                var editBtn = document.createElement("button");
+                editBtn.textContent = `Edit`;
+                editBtn.onclick = () => {
+                    editRestaurant_handler(x);
+                }
+
+                btnsDiv.appendChild(editBtn);
+
+            }
+
             restaurantContent.appendChild(uidDiv);
             restaurantContent.appendChild(nameDiv);
             restaurantContent.appendChild(locationDiv);
             restaurantContent.appendChild(phoneDiv);
             restaurantContent.appendChild(imagesDiv);
 
-
-            let btnsDiv = document.createElement("div");
-            btnsDiv.setAttribute("class", "btnsDiv");
-
-
             restaurantContent.appendChild(btnsDiv);
-
-
-            // When login page is finished and there is logged user in localStorage
-            // if (loggedRestaurant.uid == currentRestaurant.uid){
-            //     let editBtn = document.createElement("button");
-            //     editBtn.textContent = `Edit`;
-            //     editBtn.onclick = () => {
-            //         editRestaurant_handler(x);
-            //     }
-            // }
-
-            // btnsDiv.appendChild(editBtn);
-
 
             $("#restaurantsContainer").append(restaurantContent);
 
 
         }
-
-
-
-        
-
     }
+}
 
-
+const editModal = document.getElementById("editModal");
+function editRestaurant_handler(index){
+    console.log("happened");
+    editModal.showModal();
+    let tempRestaurants = JSON.parse(localStorage.getItem("res_users"));
+    for (let x in tempRestaurants){
+        if (x === index){
+            $("#editUsername").val(tempRestaurants[x].username);
+            $("#editPassword").val(tempRestaurants[x].password);
+            $("#editRestaurantName").val(tempRestaurants[x].name);
+            $("#editRestaurantLocation").val(tempRestaurants[x].location);
+            $("#editRestaurantPhone").val(tempRestaurants[x].phoneNumber);
+        }
+    }
 }

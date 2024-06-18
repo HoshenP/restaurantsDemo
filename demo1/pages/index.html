@@ -13,6 +13,32 @@
 
     </div>
 
+        
+    <dialog id="editModal">
+        <button id="edit_closeBtn">X</button>
+        <div class="modal-content">
+
+            <h2>Edit restaurant details</h2>
+            <div class="inputsWrapper">
+                <div class="label">Username</div>
+                <input type="text" id="editUsername" placeholder="Username">
+                <div class="label">Password</div>
+                <input type="text" id="editPassword" placeholder="Password">
+                <div class="label">Restaurant name</div>
+                <input type="text" id="editRestaurantName" placeholder="Restaurant name">
+                <div class="label">Location</div>
+                <input type="text" id="editRestaurantLocation" placeholder="Location">
+                <div class="label">Phone number</div>
+                <input type="text" id="editRestaurantPhone" placeholder="Phone number">
+                <div class="label">Images</div>
+                <input type="file" id="editResturauntImages" accept="image/png, image/jpg" multiple>
+            </div>
+            <button id="updateRestaurant">Update</button>
+        </div>
+    </dialog>
+
+
+
 </body>
 <!-- CDN -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
