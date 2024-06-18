@@ -9,25 +9,30 @@ if (localStorage.getItem('res_users')) {
 
 $('.login-btn').on('click', ()=> {
 
-    for (let i = 0; i < res_users.length; i++) {
+    let check = false;
 
-        if (res_users[i].username == username_input.value) {
+    for (let x in res_users) {
 
-            if (res_users[i].password == pw_input.value) {
-                let currentUser = res_users[i];
-                localStorage.setItem('res_current', JSON.stringify(currentUser));
-                console.log(currentUser);
+        if (res_users[x].username == $('#username').val()) {
+
+            check = true;
+
+            if (res_users[x].password == $('#password').val()) {
+                localStorage.setItem('res_current', JSON.stringify(res_users[x]));
+                alert('Logged in successfully!');
+                location.href = './index.html';
+                break;
             } else {
                 alert('Wrong password');
             }
 
-            break;
-
-        } else {
-            alert('User does not found.');
-            break;
-        }
+        } 
 
     }
+
+    if (!check) {
+        alert('User does not found.');
+    }
+
 
 });
