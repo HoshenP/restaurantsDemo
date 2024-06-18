@@ -1,9 +1,6 @@
 import { loadRestaurants, saveUpdatedRestaurant } from "./utils.js"
 
 $(document).ready( () => {
-    localStorage.setItem("res_current", JSON.stringify(JSON.parse(localStorage.getItem("res_users"))[0]));
-    console.log(JSON.parse(localStorage.getItem("res_users"))[0]);
-
 
     loadRestaurants();
 
@@ -16,7 +13,13 @@ $(document).ready( () => {
         editModal.close();
     });
 
+    $("#disconnectBtn").click( () => {
+        localStorage.removeItem("res_current");
+        window.location.href = "./login.html";
 
+
+
+    });
 
 });
 

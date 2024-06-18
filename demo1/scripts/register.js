@@ -13,10 +13,12 @@ $(document).ready(function () {
       $("#restaurantName").val() === "" ||
       $("#restaurantLocation").val() === "" ||
       $("#restaurantPhone").val() === "" ||
-      !$("#resturauntImages").prop("files")[0] ||
-      $("#resturauntImages").prop("files").length > 5
-    ) {
+      !$("#resturauntImages").prop("files")[0]) {
       alert("Make sure you fill all the fields!");
+
+    }else if ($("#resturauntImages").prop("files").length > 5){
+      alert("You can't upload more than 5 images");
+
     } else {
         
       let images = $("#resturauntImages").prop("files");
