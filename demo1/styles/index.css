@@ -1,6 +1,15 @@
 .imgDiv{
     display: inline-block;
-    width: 75px;
-    height: 75px;
+    width: 100px;
+    height: auto;
     background-size: contain;
+    background-repeat: no-repeat;
+}
+.bg-greeni {
+    background: #6ECD61 !important;
+}
+#editModal {
+    border-radius: 20px;
+    outline: none;
+    border: none;
 }

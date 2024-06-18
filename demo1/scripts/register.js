@@ -48,6 +48,7 @@ $(document).ready(function () {
 
                 tempArr.push(newRestaurnt);
                 localStorage.setItem("res_users", JSON.stringify(tempArr));
+                location.href = './login.html';
               } else {
                 let tempArr = [];
                 let newRestaurnt = new Restaurant(
@@ -62,6 +63,7 @@ $(document).ready(function () {
 
                 tempArr.push(newRestaurnt);
                 localStorage.setItem("res_users", JSON.stringify(tempArr));
+                location.href = './login.html';
               }
             }
           };

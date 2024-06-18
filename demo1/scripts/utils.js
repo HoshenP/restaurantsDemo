@@ -22,24 +22,25 @@ export function loadRestaurants() {
       let currentRestaurant = tempRestaurants[x];
 
       let restaurantContent = document.createElement("div");
-      restaurantContent.setAttribute("class", "restaurantContent");
+      restaurantContent.setAttribute("class", "restaurantContent card d-flex flex-row m-3 p-3");
 
       let uidDiv = document.createElement("div");
-      uidDiv.innerHTML = `ID: ${currentRestaurant.uid}`;
+      uidDiv.innerHTML = `<p class="fw-semibold fs-5 my-1"> <i class="bi bi-person-check"></i> ID: <span class="badge bg-greeni text-dark fw-semibold fs-5 rounded-4">${currentRestaurant.uid}</span></p>`;
 
       let nameDiv = document.createElement("div");
-      nameDiv.innerHTML = `Name: ${currentRestaurant.name}`;
+      nameDiv.innerHTML = `<p class="fw-semibold fs-5 my-1"> <i class="bi bi-buildings"></i> Name: <span class="badge bg-greeni text-dark fw-semibold fs-5 rounded-4">${currentRestaurant.name}</span></p>`;
 
       let locationDiv = document.createElement("div");
-      locationDiv.innerHTML = `Location: ${currentRestaurant.location}`;
+      locationDiv.innerHTML = `<p class="fw-semibold fs-5 my-1"> <i class="bi bi-geo-alt"></i> Location: <span class="badge bg-greeni text-dark fw-semibold fs-5 rounded-4">${currentRestaurant.location}</span></p>`;
 
       let phoneDiv = document.createElement("div");
-      phoneDiv.innerHTML = `Phone number: ${currentRestaurant.phoneNumber}`;
+      phoneDiv.innerHTML = `<p class="fw-semibold fs-5 my-1"> <i class="bi bi-telephone"></i> Phone number: <span class="badge bg-greeni text-dark fw-semibold fs-5 rounded-4">${currentRestaurant.phoneNumber}</span></p>`;
 
       let imagesDiv = document.createElement("div");
+      imagesDiv.classList.add('d-flex', 'flex-row', 'justify-content-end', 'col-8');
       for (let x in currentRestaurant.images) {
         let imgDiv = document.createElement("div");
-        imgDiv.setAttribute("class", "imgDiv");
+        imgDiv.setAttribute("class", "imgDiv m-1");
         imgDiv.style.backgroundImage = `url(${currentRestaurant.images[x]})`;
         imagesDiv.appendChild(imgDiv);
       }
@@ -47,12 +48,17 @@ export function loadRestaurants() {
       let btnsDiv = document.createElement("div");
       btnsDiv.setAttribute("class", "btnsDiv");
 
-      // When login page is finished and there is logged user in localStorage
+      let divLeft = document.createElement("div");
+      divLeft.append(uidDiv, nameDiv, locationDiv, phoneDiv, btnsDiv)
+      divLeft.classList.add('d-flex', 'flex-column', 'justify-content-start', 'col-4');
+
+
       console.log(loggedRestaurant, currentRestaurant);
       if (loggedRestaurant.uid == currentRestaurant.uid) {
         console.log("ting");
         var editBtn = document.createElement("button");
         editBtn.textContent = `Edit`;
+        editBtn.classList.add('btn', 'btn-light', 'rounded-5', 'py-1', 'px-3', 'mt-3');
         editBtn.onclick = () => {
           editRestaurant_handler(x);
         };
@@ -60,13 +66,7 @@ export function loadRestaurants() {
         btnsDiv.appendChild(editBtn);
       }
 
-      restaurantContent.appendChild(uidDiv);
-      restaurantContent.appendChild(nameDiv);
-      restaurantContent.appendChild(locationDiv);
-      restaurantContent.appendChild(phoneDiv);
-      restaurantContent.appendChild(imagesDiv);
-
-      restaurantContent.appendChild(btnsDiv);
+      restaurantContent.append(divLeft, imagesDiv);
 
       $("#restaurantsContainer").append(restaurantContent);
     }
