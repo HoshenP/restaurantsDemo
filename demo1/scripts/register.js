@@ -18,6 +18,7 @@ $(document).ready(function () {
     ) {
       alert("Make sure you fill all the fields!");
     } else {
+        
       let images = $("#resturauntImages").prop("files");
       let base64Images = [];
 
