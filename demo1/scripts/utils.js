@@ -94,6 +94,26 @@ function editRestaurant_handler(index){
             $("#editRestaurantName").val(tempRestaurants[x].name);
             $("#editRestaurantLocation").val(tempRestaurants[x].location);
             $("#editRestaurantPhone").val(tempRestaurants[x].phoneNumber);
+            localStorage.setItem("edit-index", index);
         }
     }
+}
+
+
+export function saveUpdatedRestaurant(){
+    let tempRestaurants = JSON.parse(localStorage.getItem("res_users"));
+    let editIndex = localStorage.getItem("edit-index");
+    for (let x in tempRestaurants) {
+        if (x === editIndex){
+            tempRestaurants[x].username = $("#editUsername").val();
+            tempRestaurants[x].password = $("#editPassword").val();
+            tempRestaurants[x].name = $("#editRestaurantName").val();
+            tempRestaurants[x].location = $("#editRestaurantLocation").val();
+            tempRestaurants[x].phoneNumber = $("#editRestaurantPhone").val();
+            break;
+        }
+    }
+    localStorage.setItem("res_users", JSON.stringify(tempRestaurants));
+    editModal.close();
+    document.location.reload();
 }
